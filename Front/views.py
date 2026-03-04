@@ -40,11 +40,13 @@ def index():
 def questionnaire():
     quest_req = query_db("SELECT * FROM Questions")
     questions = [{'id_question': x['id_question'], 'liste_niveaux': x['liste_niveaux'], 'indice_reponse': x['indice_reponse']} for x in quest_req]
+    print(questions)
 
     if (request.args.get("lang") == "fr"):
-        questions_lang = [{'id_question': x['id_question'], 'intitulé': x['intitulé'], 'liste_reponses': x['liste_reponses'], 'explication': x['explication']} for x in query_db("SELECT * FROM questions_FR")]
+        questions_lang = [{'id_question': x['id_question'], 'intitulé': x['intitulé'], 'liste_reponses': x['liste_reponses'], 'explication': x['explication']} for x in query_db("SELECT * FROM Questions_FR")]
     else:
-        questions_lang = [{'id_question': x['id_question'], 'intitulé': x['intitulé'], 'liste_reponses': x['liste_reponses'], 'explication': x['explication']} for x in query_db("SELECT * FROM questions_EN")]
+        questions_lang = [{'id_question': x['id_question'], 'intitulé': x['intitulé'], 'liste_reponses': x['liste_reponses'], 'explication': x['explication']} for x in query_db("SELECT * FROM Questions_EN")]
+    print(questions_lang)
     return render_template("questionnaire.html", questions=questions, questions_lang=questions_lang)
 
 
