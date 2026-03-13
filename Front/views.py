@@ -66,7 +66,6 @@ def leaderboard():
         eleves = [{'prenom': x['prenom'], 'nom': x['nom'], 'classe': query_db("SELECT niveau, numéro FROM " )}]
 
 
-app.run(debug=False)
 @app.get("/connexion")
 def connexion_get():
     lang = session.get("lang", "fr")
@@ -106,5 +105,4 @@ def index():
 def eleves():
     return "Page élèves "
 
-if __name__ == "__main__":
-    app.run(debug=True)
+app.run(debug=True)
